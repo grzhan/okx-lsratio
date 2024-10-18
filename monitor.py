@@ -26,7 +26,7 @@ def check_lsratio_and_alert(target: str):
   threshold = get_lsratio_threshold()
   state = GlobalState()
   if len(result['data']) > 0:
-    ratio = float(result['data'][1])
+    ratio = float(result['data'][0][1])
     if ratio < threshold:
       send_email(f'【风险】{target} 多空比小于 {threshold}', f'{target} 多空比为 {ratio}，小于阈值 {threshold}，请注意风险')
       state.mark_as_alerted(target)

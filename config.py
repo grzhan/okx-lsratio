@@ -5,7 +5,7 @@ def get_targets():
   return raw_text.split(',')
 
 def get_interval():
-  return float(os.getenv('SCRAPE_INTERVAL', 5))
+  return float(os.getenv('SCRAPE_INTERVAL', 30))
 
 def get_email_sender():
   return os.getenv('EMAIL_SENDER')
@@ -20,7 +20,7 @@ def get_email_smtp_server():
   return os.getenv('EMAIL_SMTP_SERVER')
 
 def get_email_smtp_port():
-  return os.getenv('EMAIL_SMTP_PORT')
+  return int(os.getenv('EMAIL_SMTP_PORT', 587))
 
 def get_email_config():
   return {

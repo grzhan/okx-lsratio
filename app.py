@@ -70,7 +70,23 @@ def daily_report():
   output = ''
   for target in targets:
     result = get_margin_loan_ratio(target, '1D')
-    print(result)
+    ratio_str = ''
+    if len(result['data']) > 0:
+      ratio_str = ', '.join([item[1] for item in result['data']])
+    else:
+      ratio_str = str(result)
+    output += f'{target}: {ratio_str}<br>'
+  return output
+
+@route('/latest/report')
+def latest_report():
+  """
+  显示加密货币的最新多空比
+  """
+  targets = get_targets()
+  output = ''
+  for target in targets:
+    result = get_margin_loan_ratio(target, '5m')
     ratio_str = ''
     if len(result['data']) > 0:
       ratio_str = ', '.join([item[1] for item in result['data']])
