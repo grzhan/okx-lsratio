@@ -35,6 +35,8 @@ def get_lsratio_threshold():
   return float(os.getenv('LSRATIO_THRESHOLD', 20))
 
 def sanitized(text: str):
+  if text is None:
+    return ''
   return '*' * len(text)
 
 def get_all_configs():
